@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block b1 %}
+    <div class="container">
+        <div class="text-left">
+            <a href="{% url 'app1:profile' %}">BACK</a>
+        </div>
+    </div>
+    <h3 style="color: midnightblue;" >{{msg}} {{user}}</h3>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for i in form %}
+            <label class="col-sm-1" for="">{{i.label_tag}}</label>  
+            {{i}}{{i.errors|striptags}} <br> <br>
+        {% endfor %}
+        <input type="submit" value="SUBMIT">
+    </form>
+    <div class="text-center text-success" >
+        {% if messages %}
+            {% for i in messages %}
+                {{i}}
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}
